@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border: 1px solid #333;
+            display: inline-block;
+        }
+
+        #menu {
+            background-color: #f0f0f0;
+            padding: 10px;
+            display: none;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+        }
+
+        img {
+            width: 200px;
+            margin-top: 10px;
+        }
+
+        .parent {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .faq {
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .answer {
+            display: none;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1. Basic jQuery Setup and interactive button -->
+    <h2>1. Basic jQuery Setup and interactive button</h2>
+    <p id="message">This is the original text.</p>
+    <button id="changeTextBtn">Change Text</button>
+
+
+    <!-- 2. Selectors in jQuery -->
+    <h2>2. Selectors in jQuery</h2>
+    <p>This is the first paragraph.</p>
+    <p>This is the second paragraph.</p>
+
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div><br>
+    <button id="changeColors">Change colors</button>
+
+
+    <!-- 3. Event Handling in jQuery -->
+    <h2>3. Event Handling in jQuery</h2>
+
+    <button id="alertBtn">Click Me</button>
+    <p id="hoverPara">Hover over this paragraph to change its text.</p>
+
+
+    <!-- 4. Animations in jQuer -->
+    <h2>4. Animations in jQuery</h2>
+    <button id="fadeBtn">Fade Out Image</button>
+    <br>
+    <img id="image" src="image.jpg" alt="Sample Image">
+
+    <br><br>
+    <button id="toggleMenuBtn">Toggle Menu</button>
+    <div id="menu">
+        <p>This is a collapsible menu item.</p>
+        <p>You can put links or content here.</p>
+    </div>
+
+
+    <!-- 5. jQuery Traversing -->
+    <h2>5. jQuery Traversing</h2>
+    <div class="parent">
+        <span id="mySpan">Child span inside a parent div.</span>
+    </div>
+
+    <div class="paras">
+        <p id="firstPara">First paragraph</p>
+        <p>Second paragraph (will be made bold)</p>
+    </div>
+
+
+    <!-- 6. jQuery Effects (Show, Hide, Toggle) -->
+    <h2>6. jQuery Effects (Show, Hide, Toggle)</h2>
+    <h3>Show/Hide Example</h3>
+    <p id="message">This is a paragraph to show and hide.</p>
+    <button id="hideBtn">Hide</button>
+    <button id="showBtn">Show</button>
+
+    <hr>
+
+    <h3>FAQ Section</h3>
+    <div class="faq">Q1: What is jQuery?</div>
+    <div class="answer">A: jQuery is a fast, small, and feature-rich JavaScript library.</div>
+
+    <div class="faq">Q2: What is jQuery used for?</div>
+    <div class="answer">A: It's used to simplify DOM manipulation, event handling, animations, and Ajax.</div>
+
+
+
+
+
+    <script>
+        // Alert on page load
+        $(document).ready(function () {
+            alert("Page has loaded!");
+
+            $('#changeTextBtn').click(function () {
+                $('#message').text("The text has been changed!");
+            });
+
+
+            $('#changeColors').click(function () {
+                $('p').css('color', 'blue');
+
+                $('.box').css('background-color', 'lightgreen');
+            });
+
+
+            $('#alertBtn').click(function () {
+                alert("Button was clicked!");
+            });
+
+            $('#hoverPara').hover(
+                function () {
+                    $(this).text("You're hovering over the paragraph!");
+                },
+                function () {
+                    $(this).text("Hover over this paragraph to change its text.");
+                }
+            );
+
+            $('#fadeBtn').click(function () {
+                $('#image').fadeOut();
+            });
+
+            $('#toggleMenuBtn').click(function () {
+                $('#menu').slideToggle();
+            });
+
+            $('#mySpan').parent().css('background-color', '#79e74c');
+
+            $('#firstPara').next().css('font-weight', 'bold');
+
+
+            
+            $('#hideBtn').click(function () {
+                $('#message').hide();
+            });
+            $('#showBtn').click(function () {
+                $('#message').show();
+            });
+
+            $('.faq').click(function () {
+                $(this).next('.answer').toggle();
+            });
+        });
+    </script>
+</body>
+
+</html>

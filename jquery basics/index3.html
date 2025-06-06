@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jQuery Form Validation and Submission</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .error {
+      color: red;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    #submitResult {
+      margin-top: 15px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Registration Form</h2>
+  <form id="myForm">
+    <label for="name">Name:</label><br />
+    <input type="text" id="name" /><br />
+    <div id="nameError" class="error"></div>
+
+    <label for="email">Email:</label><br />
+    <input type="text" id="email" /><br />
+    <div id="emailError" class="error"></div><br />
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="submitResult"></div>
+
+  <script>
+    $(document).ready(function () {
+      $('#myForm').submit(function (e) {
+        e.preventDefault(); // Prevent default form submission
+
+        // Clear previous errors and messages
+        $('#nameError').text('');
+        $('#emailError').text('');
+        $('#submitResult').text('');
+
+        let valid = true;
+        const name = $('#name').val().trim();
+        const email = $('#email').val().trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // Validation
+        if (name === '') {
+          $('#nameError').text('Name is required.');
+          valid = false;
+        }
+
+        if (email === '') {
+          $('#emailError').text('Email is required.');
+          valid = false;
+        } else if (!emailPattern.test(email)) {
+          $('#emailError').text('Please enter a valid email address.');
+          valid = false;
+        }
+
+        // Submit via AJAX if valid
+        if (valid) {
+          $.post("https://jsonplaceholder.typicode.com/posts",
+            { name: name, email: email },
+            function (data) {
+              $('#submitResult').html(
+                `<p>Submitted successfully!<br>Name: ${data.name}<br>Email: ${data.email}<br>Server returned ID: ${data.id}</p>`
+              );
+            }
+          );
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

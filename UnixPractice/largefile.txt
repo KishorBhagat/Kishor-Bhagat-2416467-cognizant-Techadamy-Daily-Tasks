@@ -1,0 +1,202 @@
+​
+         
+Command
+         
+Description
+         
+Example
+           
+pwd
+      
+Prints the  current directory
+      
+$ pwd → /home/user/Documents
+        
+Ls
+      
+Lists  files in a directory
+      
+$ ls → file1.txt  file2.txt myfolder/
+        
+Cd
+      
+Changes  directory
+      
+$ cd  myfolder/
+   
+   
+   
+   
+   
+   _________________
+   File command :
+       
+       
+2. File Operations
+         
+Command
+         
+Description
+         
+Example
+           
+touch  file.txt
+      
+Creates a  new empty file
+      
+$ touch  notes.txt
+        
+mkdir  mydir
+      
+Creates a  new directory
+      
+$ mkdir  projects
+        
+rm  file.txt
+      
+Deletes a  file
+      
+$ rm  old_data.txt
+        
+cp file1  file2
+      
+Copies a  file
+      
+$ cp  report.doc backup_report.doc
+        
+mv file  dir/
+      
+Moves a  file
+      
+$ mv  document.txt archive/
+
+_________________
+
+3. Viewing File Content
+         
+Command
+         
+Description
+         
+Example
+           
+cat  file.txt
+      
+Shows file  contents
+      
+$ cat  hello.txt
+        
+more  file.txt
+      
+View file  page-by-page
+      
+$ more  largefile.log
+        
+head  file.txt
+      
+Shows  first 10 lines
+      
+$ head  notes.txt
+        
+tail  file.txt
+      
+Shows last  10 lines
+      
+$ tail  log.txt
+__________________
+4. User and Permissions Management
+         
+Command
+         
+Description
+         
+Example
+           
+whoami
+      
+Displays  current user
+      
+$ whoami →  john_doe
+        
+id
+      
+Shows user  ID info
+      
+$ id
+        
+chmod 755  script.sh
+      
+Sets file  permissions
+      
+$ chmod +x  script.sh
+        
+chown user  file
+      
+Changes  file ownership
+      
+$ chown  alice document.txt
+_________________
+. Process Management
+         
+Command
+         
+Description
+         
+Example
+           
+ps
+      
+Shows  running processes
+      
+$ ps
+        
+top
+      
+Displays  live CPU usage
+      
+$ top
+        
+kill 1234
+      
+Terminates  process ID
+      
+$ kill  1234
+   
+   
+   _____________________
+   
+Disk and Network Utilities
+         
+Command
+         
+Description
+         
+Example
+           
+df -h
+      
+Shows disk  usage
+      
+$ df -h
+        
+du -sh  folder
+      
+Calculates  folder size
+      
+$ du -sh  /home/user/
+        
+ping  google.com
+      
+Tests  network connectivity
+      
+$ ping  google.com
+        
+wget URL
+      
+Downloads  a file
+      
+$ wget  https://example.com/file.zip
+   
+   
+   
+   

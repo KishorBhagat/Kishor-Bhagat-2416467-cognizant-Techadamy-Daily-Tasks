@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Advanced Activities</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .box,
+        .colorBox {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #333;
+            margin: 10px;
+            display: inline-block;
+        }
+
+        .highlight {
+            background-color: yellow;
+        }
+
+        img {
+            width: 200px;
+            margin-top: 10px;
+        }
+
+        .progress-bar {
+            width: 0;
+            height: 20px;
+            background-color: green;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        .password-check {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Activity 3: Changing Page Background -->
+    <button id="changeBg">Change Background</button>
+    <hr>
+
+    <!-- Activity 4: Changing Text Dynamically -->
+    <p id="dynamicText">Original Text</p>
+    <button id="changeText">Change Text</button>
+    <hr>
+
+    <!-- Selectors Activity 3 -->
+    <input type="text" placeholder="Input 1"><br><br>
+    <input type="text" placeholder="Input 2"><br><br>
+    <button id="borderInputs">Add Border</button>
+    <hr>
+
+    <!-- Selectors Activity 4 -->
+    <table border="1">
+        <tr>
+            <td>Row 1</td>
+        </tr>
+        <tr>
+            <td>Row 2</td>
+        </tr>
+        <tr>
+            <td>Row 3</td>
+        </tr>
+        <tr>
+            <td>Row 4</td>
+        </tr>
+    </table><br>
+    <button id="styleRows">Style Rows</button>
+    <hr>
+
+    <!-- Event Handling Activity 3 -->
+    <input type="text" id="keyInput" placeholder="Type something">
+    <hr>
+    <!-- Event Handling Activity 4 -->
+    <div class="colorBox" id="dblClickBox">Double-click me</div>
+    <hr>
+
+    <!-- Animations Activity 3 -->
+    <div id="expandBox" style="display:none; background:#eef; padding:10px;">Toggle this content</div>
+    <br>
+    <button id="toggleSection">Expand/Collapse</button>
+    <hr>
+
+    <!-- Animations Activity 4 -->
+    <button id="moveBtn">Move Me</button>
+    <hr>
+
+    <!-- Traversing Activity 3 -->
+    <ul id="itemList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    <button id="highlightList">Highlight First/Last</button>
+    <hr>
+
+    <!-- Traversing Activity 4 -->
+    <input type="text" id="filterInput" placeholder="Filter names">
+    <ul id="nameList">
+        <li>John</li>
+        <li>Jane</li>
+        <li>Jake</li>
+        <li>Jill</li>
+    </ul>
+    <hr>
+
+    <!-- Effects Activity 3 -->
+    <img id="toggleImg" src="image.jpg" alt="Sample Image"><br>
+    <button id="fadeToggle">Fade Toggle</button>
+    <hr>
+
+    <!-- Effects Activity 4 -->
+    <div class="progress-container"  style="border: 1px solid black; width: 500px;">
+        <div class="progress-bar" id="bar"></div>
+    </div>
+    <br>
+    <button id="fillBar">Fill Progress Bar</button>
+    <hr>
+
+    <!-- AJAX Activity 3 -->
+    <button id="loadUsers">Load Users</button>
+    <ul id="userList"></ul>
+    <hr>
+
+    <!-- AJAX Activity 4 -->
+    <input type="text" id="liveSearch" placeholder="Search users">
+    <ul id="searchResults"></ul>
+    <hr>
+
+    <!-- Validation Activity 3 & 4 -->
+    <input type="password" id="password" placeholder="Enter Password">
+    <div id="strength" class="password-check"></div>
+    <hr>
+
+    <input type="text" id="validateEmail" placeholder="Enter Email">
+    <div id="emailError" class="error"></div>
+    <hr>
+
+    <script>
+        $(document).ready(function () {
+            $('#changeBg').click(function () {
+                $('body').css('background-color', '#cceeff');
+            });
+
+            $('#changeText').click(function () {
+                $('#dynamicText').text("Text updated dynamically!");
+            });
+
+            $('#borderInputs').click(function () {
+                $('input').css('border', '2px solid red');
+            });
+
+            $('#styleRows').click(function () {
+                $('tr:odd').css('background-color', '#d9edf7');
+                $('tr:even').css('background-color', '#f2dede');
+            });
+
+            $('#keyInput').on('keyup', function (e) {
+                alert("You typed: " + e.key);
+            });
+
+            $('#dblClickBox').dblclick(function () {
+                $(this).css('background-color', '#ffcc00');
+            });
+
+            $('#toggleSection').click(function () {
+                $('#expandBox').slideToggle();
+            });
+
+            $('#moveBtn').click(function () {
+                $(this).animate({ left: '250px' }, 1000);
+            });
+
+            $('#highlightList').click(function () {
+                $('#itemList li:first').addClass('highlight');
+                $('#itemList li:last').addClass('highlight');
+            });
+
+            $('#filterInput').on('keyup', function () {
+                var filter = $(this).val().toLowerCase();
+                $('#nameList li').filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(filter) > -1);
+                });
+            });
+
+            $('#fadeToggle').click(function () {
+                $('#toggleImg').fadeToggle();
+            });
+
+            $('#fillBar').click(function () {
+                $('#bar').animate({ width: '100%' }, 2000);
+            });
+
+            $('#loadUsers').click(function () {
+                $.get('https://dummyjson.com/users', function (data) {
+                    const users = data.users;
+                    $('#userList').empty();
+                    users.forEach(function (user) {
+                        $('#userList').append(`<li>${user.firstName} ${user.lastName}</li>`);
+                    });
+                });
+            });
+
+            $('#liveSearch').on('keyup', function () {
+                const query = $(this).val().toLowerCase();
+                $.get('https://dummyjson.com/users', function (data) {
+                    const users = data.users.filter(u =>
+                        u.firstName.toLowerCase().includes(query) ||
+                        u.lastName.toLowerCase().includes(query)
+                    );
+                    $('#searchResults').empty();
+                    users.forEach(function (user) {
+                        $('#searchResults').append(`<li>${user.firstName} ${user.lastName}</li>`);
+                    });
+                });
+            });
+
+            $('#password').on('keyup', function () {
+                const val = $(this).val();
+                let strength = '';
+                if (val.length < 4) strength = 'Weak';
+                else if (val.length < 8) strength = 'Moderate';
+                else strength = 'Strong';
+                $('#strength').text(`Strength: ${strength}`);
+            });
+
+            $('#validateEmail').on('keyup', function () {
+                const email = $(this).val();
+                const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!pattern.test(email)) {
+                    $('#emailError').text("Invalid email format.");
+                } else {
+                    $('#emailError').text("");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
